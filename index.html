@@ -8,22 +8,91 @@
 </head>
 <body>
     <div class="jumbotron">
-        <div class="container">
+        <div class="container text-center">
             <div class="jumbotron">
                 <h1>Trivia Game!</h1>
-
             </div>
+            <div Class = "timeText" id="timeRemaining">Time Remaining: </div>
+            <div class="display">00:10</div>
         </div>
     </div> <!--- End of jumbotron --->
     <div class="row">
         <div class="container">
             <div class="main text-center">
-                <p><a class="btn btn-primary btn-xlarge" href="#" role="button">Start</a></p>
+                <p><a class="btn btn-primary btn-xlarge start"  role="button">Start</a></p>
             </div>
         </div>
+    </div><!--- End of row --->
+    <div class="row text-center">
+            <div class=col-md-6">
+                <div class="question"></div>
+                <div class="response">
+                    <a class="btn btn-primary btn-xlarge hide" role="button" id="0">response A</a><br>
+                    <a class="btn btn-primary btn-xlarge hide" role="button" id="1">response B</a><br>
+                    <a class="btn btn-primary btn-xlarge hide" role="button" id="2">response C</a><br>
+                    <a class="btn btn-primary btn-xlarge hide" role="button" id="3">response D</a>
+                </div>
+            </div>
+    </div><!--- End of row --->
+    <div class="container myTable hide">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Your Response</th>
+                    <th>Correct Response</th>
+                    <th>Point</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td id="userAns1">Doe</td>
+                <td id="answer1">john@example.com</td>
+                <td id="point1">0</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td id="userAns2">Moe</td>
+                <td id="answer2">mary@example.com</td>
+                <td id="point2">0</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td id="userAns3">Dooley</td>
+                <td id="answer3">july@example.com</td>
+                <td id="point3">0</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="userAns4">Moe</td>
+                <td id="answer4">mary@example.com</td>
+                <td id="point4">0</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td id="userAns5">Dooley</td>
+                <td id="answer5">july@example.com</td>
+                <td id="point5">0</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>--</td>
+                <td>--</td>
+                <td id="score">0</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 
-
 </body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="assets/javascript/api.js"></script>
+<script type="text/javascript">
+    alertOne( );
+</script>
+<script src="assets/javascript/app.js"></script>
+
+
 </html>
