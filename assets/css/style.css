@@ -26,6 +26,12 @@ th{
     color: red;
 }
 
+.pie{
+    max-width: 400px;
+    max-height: 400px;
+    margin: auto;
+}
+
 .question{
     margin: 10px;
 }

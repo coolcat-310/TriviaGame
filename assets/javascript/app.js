@@ -8,7 +8,7 @@ var DEBUG = false;
 var initialTime = 10;
 var questionNumber = 1;
 var answerSheet = ['10 Jun 1994', 'John McTiernan', 'Omar Patel', 'Quentin Tarantino', '22 May 1998'];
-
+var count = 0;
 
 var questions = {
     1:{
@@ -118,7 +118,7 @@ function displayQuestion(num) {
 
 
 function results(){
-    var count = 0;
+
 
     $(".myTable").removeClass('hide');
     $(".display, .timeText").addClass('hide');
@@ -139,6 +139,8 @@ function results(){
         }
     }
     $("#score").html(count);
+    $(".pie").removeClass('hide');
+    updatePie();
 }
 
 
@@ -175,6 +177,25 @@ function saveAnswer(qN, answer){
 };
 
 
+function updatePie() {
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Correct", "Wrong"],
+            datasets: [{
+                backgroundColor: [
+                    "#2ecc71",
+                    "#e74c3c",
+
+                ],
+                data: [count, 5 -count]
+            }]
+        }
+    });
+
+
+}
 
 window.onload = function () {
     $(".start").click(function () {
