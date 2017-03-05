@@ -2,8 +2,8 @@
  * Created by juancarlosnavarrete on 2/28/17.
  */
 
-
-
+var answerSheet = [];
+var movies = ['Speed', 'Die Hard', 'The Matrix', 'Pulp Fiction', 'Fear and Loathing in Las Vegas'];
 var DEBUG = false;
 var initialTime = 10;
 var questionNumber = 1;
@@ -115,7 +115,7 @@ function displayQuestion(num) {
 
 };
 function getAnswer(){
-    var answerSheet = alertOne();
+
     var ans = [];
     for(var i = 0; i< answerSheet.length; i++){
         if(i === 0){
@@ -197,6 +197,20 @@ function saveAnswer(qN, answer){
 
 window.onload = function () {
     $(".start").click(function () {
+
+        for(i = 0; i< movies.length; i++) {
+            var movie = movies[i];
+            var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).done(function (response) {
+                answerSheet.push(response);
+            });
+        }
+
+
 
         if(DEBUG){
             console.log('click');
