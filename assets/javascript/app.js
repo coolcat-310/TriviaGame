@@ -3,33 +3,31 @@
  */
 
 
-var movies = ['Speed', 'Die Hard', 'The Matrix', 'Pulp Fiction', 'Fear and Loathing in Las Vegas'];
 var DEBUG = false;
-var initialTime = 10;
 var questionNumber = 1;
 var answerSheet = ['10 Jun 1994', 'John McTiernan', 'Omar Patel', 'Quentin Tarantino', '22 May 1998'];
 var count = 0;
 
 var questions = {
     1:{
-        question: "What year was the movie Speed release?",
-        response: ['10 Jun 1999', '10 Jun 1997', '10 Jun 1994', '10 Jun 2000'],
+        question: "When was the movie Speed release?",
+        response: ['10 Jun 1999', '10 Jun 1997', '10 Jun 1994', '10 Jun 2000']
     },
     2:{
-        question: "Who directed the the orginal Die Hard film?",
-        response: ['John McTiernan', 'James Cameron', 'Stanley Kubrick', 'William Wyler'],
+        question: "Who directed the the original Die Hard film?",
+        response: ['John McTiernan', 'James Cameron', 'Stanley Kubrick', 'William Wyler']
     },
     3:{
-        question: "Which is not an Actor/Actress in the film The Matrix?",
-        response: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss', 'Omar Patel'],
+        question: "Which of the following Actor/Actress did not appear in the film, The Matrix?",
+        response: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss', 'Omar Patel']
     },
     4:{
         question: "Who directed the film Pulp Fiction?",
-        response: ['John McTiernan', 'James Cameron', 'Quentin Tarantino', 'John Travolta'],
+        response: ['John McTiernan', 'James Cameron', 'Quentin Tarantino', 'John Travolta']
     },
     5:{
-        question: "Fear and Loathing in Las Vegas was released in which of the following year?",
-        response: ['22 May 1999', '22 May 1998', '22 May 1994', '22 May 2000'],
+        question: "Fear and Loathing in Las Vegas was released in which of the following dates?",
+        response: ['22 May 1999', '22 May 1998', '22 May 1994', '22 May 2000']
     }
 
 };
@@ -58,11 +56,10 @@ var stopwatch = {
     count: function() {
         stopwatch.timeIsUP();
         if(stopwatch.isValid) {
-            // decrement time by 1, remember we cant use "this" here.
             stopwatch.time--;
             var converted = stopwatch.timeConverter(stopwatch.time);
             $(".display").html(converted);
-        };
+        }
     },
     timeConverter: function(t) {
 
@@ -72,14 +69,12 @@ var stopwatch = {
         if (seconds < 10) {
             seconds = "0" + seconds;
         }
-
         if (minutes === 0) {
             minutes = "00";
         }
         else if (minutes < 10) {
             minutes = "0" + minutes;
         }
-
         return minutes + ":" + seconds;
     },
     timeIsUP: function () {
@@ -95,30 +90,32 @@ var stopwatch = {
 
 
 function displayQuestion(num) {
-    if(DEBUG) {
-        console.log('comparistion of number: ' + num + ' and the lenght: ' + Object.keys(questions).length);
-    }
+    /**
+     * This function retrieves the the object from an array and displays the responses as buttons.
+     * @method displayQuestion
+     * @param {num} int - integer which is used to determine which object to retrieve from the array, questions.
+     */
+
     if(num <= Object.keys(questions).length) {
         stopwatch.start();
-        //console.log(questions[num].question);
         $('.question').html(questions[num].question);
-        for (i = 0; i < questions[num].response.length; i++) {
+        for (var i = 0; i < questions[num].response.length; i++) {
             var temp = questions[num].response[i];
             $("#" +i+"").html(temp);
         }
     }else{
-        console.log('there are nomore questions, and get the score');
+        console.log('there are no more questions, and get the score');
         stopwatch.stop();
         results();
 
     }
-
-
-};
-
-
+}
 function results(){
-
+    /**
+     * This function displays the results of the trivia game as a table and invokes the function updatePie()
+     * @method results
+     * @param none
+     */
 
     $(".myTable").removeClass('hide');
     $(".display, .timeText").addClass('hide');
@@ -144,40 +141,47 @@ function results(){
 }
 
 
-
-
 function clearButtons(){
-    $(".start").fadeOut('slow');
+    /**
+     * This function removes the 'start' button and displays the first question and responses.
+     * @method clearButton
+     * @param none
+     */
 
-    //console.log('This is in the clearButtons ' + questionNumber );
+    $(".start").fadeOut('slow');
     displayQuestion(questionNumber);
 
-};
+}
 
 function saveAnswer(qN, answer){
-    //only save is time is valid
-   // console.log('questionNumber: ' + qN + " and answer: "+ answer);
+    /**
+     * This function saves the input and places the answer as a new property(guess) in the question object.
+     * @method savaAnswer
+     * @param {qN} int - Used as an index to retrieve an object from the questions array.
+     * @param {answer} int - Is the response given by the id of the button, or  9 which signifies time ran out.
+     */
+
     if(stopwatch.isValid) {
         questions[qN].guess = answer;
         questionNumber++;
         stopwatch.reset();
     }else if(qN <= Object.keys(questions).length ){
-       // console.log('time ran out');
         questions[qN].guess = answer;
         questionNumber++;
         stopwatch.reset();
     }
-
-    // questionNumber++;
-    // stopwatch.reset();
     if(DEBUG){
         console.log('saving answer:' + qN);
         console.log(questions);
     }
-};
-
+}
 
 function updatePie() {
+    /**
+     * This function displays a Pie chart
+     * @method updatePid
+     * @param none
+     */
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',
@@ -186,15 +190,13 @@ function updatePie() {
             datasets: [{
                 backgroundColor: [
                     "#2ecc71",
-                    "#e74c3c",
+                    "#e74c3c"
 
                 ],
                 data: [count, 5 -count]
             }]
         }
     });
-
-
 }
 
 window.onload = function () {
@@ -204,13 +206,9 @@ window.onload = function () {
         if(DEBUG){
             console.log('click');
             console.log(Object.keys(questions).length);
-        };
+        }
         clearButtons();
         $('#0, #1, #2, #3').removeClass("hide");
-
-
-
-
 
     });
         //on click on answer
@@ -220,8 +218,8 @@ window.onload = function () {
                 //which button was pushed
                 console.log(e.target.id);
                 console.log(questionNumber);
-            };
-            saveAnswer(questionNumber, e.target.id);
+            }
+        saveAnswer(questionNumber, e.target.id);
             //erase first options
             clearButtons();
 

@@ -35,9 +35,11 @@
                 </div>
             </div>
     </div><!--- End of row --->
-    <div class="container myTable hide">
-        <table class="table table-striped">
-            <thead>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="myTable hide">
+                <table class="table table-striped">
+                <thead>
                 <tr>
                     <th>Question</th>
                     <th>Your Response</th>
@@ -48,31 +50,31 @@
             <tbody>
             <tr>
                 <td>1</td>
-                <td id="userAns1">Doe</td>
+                <td id="userAns1">Time Ran Out!</td>
                 <td id="answer1">john@example.com</td>
                 <td id="point1">0</td>
             </tr>
             <tr>
                 <td>2</td>
-                <td id="userAns2">Moe</td>
+                <td id="userAns2">Time Ran Out!</td>
                 <td id="answer2">mary@example.com</td>
                 <td id="point2">0</td>
             </tr>
             <tr>
                 <td>3</td>
-                <td id="userAns3">Dooley</td>
+                <td id="userAns3">Time Ran Out!</td>
                 <td id="answer3">july@example.com</td>
                 <td id="point3">0</td>
             </tr>
             <tr>
                 <td>4</td>
-                <td id="userAns4">Moe</td>
+                <td id="userAns4">Time Ran Out!</td>
                 <td id="answer4">mary@example.com</td>
                 <td id="point4">0</td>
             </tr>
             <tr>
                 <td>5</td>
-                <td id="userAns5">Dooley</td>
+                <td id="userAns5">Time Ran Out!</td>
                 <td id="answer5">july@example.com</td>
                 <td id="point5">0</td>
             </tr>
@@ -83,12 +85,14 @@
                 <td id="score">0</td>
             </tr>
             </tbody>
-        </table>
-    </div><!--- End of Table --->
-    <div class="row">
-        <canvas class="pie hide" id="myChart"></canvas>
-    </div>
+            </table>
+            </div><!--- End of Table --->
+        </div>
+        <div class="col-md-6">
+            <canvas class="pie hide" id="myChart"></canvas>
+        </div>
 
+    </div><!--- End of row --->
 
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
