@@ -2,12 +2,13 @@
  * Created by juancarlosnavarrete on 2/28/17.
  */
 
-var answerSheet = [];
+
 var movies = ['Speed', 'Die Hard', 'The Matrix', 'Pulp Fiction', 'Fear and Loathing in Las Vegas'];
 var DEBUG = false;
 var initialTime = 10;
 var questionNumber = 1;
-var answer = []
+var answerSheet = ['10 Jun 1994', 'John McTiernan', 'Omar Patel', 'Quentin Tarantino', '22 May 1998'];
+
 
 var questions = {
     1:{
@@ -114,31 +115,11 @@ function displayQuestion(num) {
 
 
 };
-function getAnswer(){
 
-    var ans = [];
-    for(var i = 0; i< answerSheet.length; i++){
-        if(i === 0){
-            ans.push(answerSheet[i].Released);
-            console.log(ans);
-        }else if(i === 1){
-            ans.push(answerSheet[i].Director);
-        }else if(i === 2){
-            ans.push('Omar Patel');
-        }else if(i === 3){
-            ans.push(answerSheet[i].Director);
-        }else if(i === 4){
-            ans.push(answerSheet[i].Released);
-        }
-    }
-    return ans;
-}
 
 function results(){
-    // console.log(answerSheet);
     var count = 0;
-    var userAns = getAnswer();
-    console.log(userAns[0]);
+
     $(".myTable").removeClass('hide');
     $(".display, .timeText").addClass('hide');
     $(".response").fadeOut('slow');
@@ -149,8 +130,8 @@ function results(){
         var credit = "answer" + index.toString();
         var ans = questions[index].guess;
         $("#" + id + "").html(questions[index].response[ans]);
-        $("#" + credit + "").html(userAns[i]);
-        if(questions[index].response[ans] === userAns[i]){
+        $("#" + credit + "").html(answerSheet[i]);
+        if(questions[index].response[ans] === answerSheet[i]){
             console.log('they match at i:' + i);
             var points = "point" + index.toString();
             $("#" + points + "").html("1");
@@ -161,7 +142,7 @@ function results(){
 }
 
 
-getAnswer();
+
 
 function clearButtons(){
     $(".start").fadeOut('slow');
@@ -197,19 +178,6 @@ function saveAnswer(qN, answer){
 
 window.onload = function () {
     $(".start").click(function () {
-
-        for(i = 0; i< movies.length; i++) {
-            var movie = movies[i];
-            var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
-
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).done(function (response) {
-                answerSheet.push(response);
-            });
-        }
-
 
 
         if(DEBUG){
