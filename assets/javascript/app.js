@@ -115,6 +115,7 @@ function displayQuestion(num) {
 
 };
 function getAnswer(){
+    var answerSheet = alertOne();
     var ans = [];
     for(var i = 0; i< answerSheet.length; i++){
         if(i === 0){
@@ -203,6 +204,10 @@ window.onload = function () {
         };
         clearButtons();
         $('#0, #1, #2, #3').removeClass("hide");
+
+
+
+
 
     });
         //on click on answer
